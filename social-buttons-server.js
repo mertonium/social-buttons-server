@@ -75,13 +75,13 @@ var networkCallbacks = {
   },
   facebook: function(url, callback){
   // This query string gets the total number of likes, shares and comments to create the final count
-  var apiUrl = "https://graph.facebook.com/fql?q=SELECT%20url,%20normalized_url,%20share_count,%20like_count,%20comment_count,%20total_count,commentsbox_count,%20comments_fbid,%20click_count%20FROM%20link_stat%20WHERE%20url='"+url+"'";
+  var apiUrl = "https://graph.facebook.com/?id="+url;
   request.get(apiUrl)
     .set('Accept', 'application/json')
     .end(function(data){
       var count;
-      if(data.body.data.length > 0) {
-        count = data.body.data[0].total_count;
+      if(data.body.shares) {
+        count = data.body.shares.total_count;
       } else {
         count = 0;
       }
