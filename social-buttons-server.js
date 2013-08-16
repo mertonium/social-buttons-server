@@ -81,7 +81,7 @@ var networkCallbacks = {
     .end(function(data){
       var count;
       if(data.body.shares) {
-        count = data.body.shares.total_count;
+        count = data.body.shares;
       } else {
         count = 0;
       }
